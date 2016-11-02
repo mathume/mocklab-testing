@@ -1,0 +1,17 @@
+buildscript {
+	repositories {
+		maven {
+			url "https://plugins.gradle.org/m2/"
+		}
+	}
+}
+
+dependencies {
+	classpath "gradle.plugin.net.foragerr.jmeter:jmeter-gradle-plugin:1.0.7-3.0-BETA"
+
+	compile group: 'org.apache.jmeter', name: 'ApacheJMeter_core', version: '3.0'
+	compile group: 'org.apache.jmeter', name: 'ApacheJMeter_java', version: '3.0'
+}
+
+apply plugin: "net.foragerr.jmeter"
+apply plugin: "java"
