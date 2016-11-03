@@ -22,10 +22,10 @@ import java.util.UUID;
 public class DeleteWireMockInstance extends AbstractJavaSamplerClient {
     private Map<String, String> mapParams = new HashMap<String, String>();
 
-    private static final String ApiKey = "ApiKey";
-    private static final String ApiUser = "ApiUser";
-    private static final String MockLabUrl = "MockLabUrl";
-    private static final String ServiceIdVariable = "ServiceIdVariable";
+    public static final String ApiKey = "ApiKey";
+    public static final String ApiUser = "ApiUser";
+    public static final String MockLabUrl = "MockLabUrl";
+    public static final String ServiceIdVariable = "ServiceIdVariable";
 
     public DeleteWireMockInstance() {
         super();
