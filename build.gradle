@@ -1,17 +1,75 @@
-buildscript {
-	repositories {
-		maven {
-			url "https://plugins.gradle.org/m2/"
-		}
-	}
-}
-
-dependencies {
-	classpath "gradle.plugin.net.foragerr.jmeter:jmeter-gradle-plugin:1.0.7-3.0-BETA"
-
-	compile group: 'org.apache.jmeter', name: 'ApacheJMeter_core', version: '3.0'
-	compile group: 'org.apache.jmeter', name: 'ApacheJMeter_java', version: '3.0'
-}
-
 apply plugin: "net.foragerr.jmeter"
 apply plugin: "java"
+apply plugin: "spring-boot"
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("gradle.plugin.net.foragerr.jmeter:jmeter-gradle-plugin:1.0.7-3.0-BETA")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+        classpath("org.codehaus.groovy:groovy-all:2.4.7")
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+dependencies {
+
+    compile group: 'org.apache.jmeter', name: 'ApacheJMeter_core', version: '3.0'
+    compile group: 'org.apache.jmeter', name: 'ApacheJMeter_java', version: '3.0'
+    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework:spring-web")
+    compile("com.fasterxml.jackson.core:jackson-databind")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile "com.github.tomakehurst:wiremock:2.2.2"
+}
+
+bootRepackage {
+    enabled = false
+}
+
+task copyPlugin(type: Copy) {
+    from("build/libs")
+    into("build/jmeter/lib/ext")
+}
+
+task copyDependencies(type: Copy) {
+    from(configurations.compile){
+        //exclude("*ApacheJMeter_core*")
+    }
+    into("build/jmeter/lib")
+}
+
+task copyAll {
+    dependsOn build
+    dependsOn "copyPlugin"
+    dependsOn "copyDependencies"
+}
+
+jmInit.dependsOn(copyAll)
+
+jmeter {
+    //jmTestFiles = [file("src/test/jmeter/test2.jmx")]
+    //jmUserPropertiesFiles = [file("src/test/jmeter/user.properties")]
+    enableReports = true
+    enableExtendedReports = true
+    //ignoreErrors = false
+    //ignoreFailures = false
+    maxHeapSize = "1200M"
+    jmPluginJars = ["groovy-all"]
+}
+
+task printBuildScriptClasspath << {
+    println "\nLoading the following jmeter classpath jars..."
+    project.buildscript.configurations.classpath.each {
+        String jarName = it.getName();
+        print jarName + ":\n"
+    }
+    println "\n"
+}
