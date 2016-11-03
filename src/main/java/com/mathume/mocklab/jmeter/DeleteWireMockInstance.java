@@ -19,7 +19,7 @@ import java.util.UUID;
 /**
  * Created by sebastian on 2/11/16.
  */
-public class CreateWireMockInstance extends AbstractJavaSamplerClient {
+public class DeleteWireMockInstance extends AbstractJavaSamplerClient {
     private Map<String, String> mapParams = new HashMap<String, String>();
 
     private static final String ApiKey = "ApiKey";
@@ -27,38 +27,32 @@ public class CreateWireMockInstance extends AbstractJavaSamplerClient {
     private static final String MockLabUrl = "MockLabUrl";
     private static final String ServiceIdVariable = "ServiceIdVariable";
 
-    public CreateWireMockInstance() {
+    public DeleteWireMockInstance() {
         super();
     }
 
     @Override
     public void setupTest(JavaSamplerContext context) {
-        for (Iterator<String> it = context.getParameterNamesIterator(); it.hasNext();) {
-            String paramName =  it.next();
+        for (Iterator<String> it = context.getParameterNamesIterator(); it.hasNext(); ) {
+            String paramName = it.next();
             mapParams.put(paramName, context.getParameter(paramName));
         }
     }
 
     public SampleResult runTest(JavaSamplerContext context) {
         SampleResult result = new SampleResult();
-
         try {
             result.sampleStart();
 
             MockLabApiClient client = new MockLabApiClient(mapParams.get(ApiKey), mapParams.get(ApiUser), mapParams.get(MockLabUrl), result);
 
-            ResponseEntity<MockServiceResponse> response = client.createService(UUID.randomUUID().toString());
+            String serviceId = JMeterContextService.getContext().getVariables().get(this.mapParams.get(ServiceIdVariable));
+            client.deleteService(serviceId);
 
-            if(response.getStatusCode() == HttpStatus.CREATED) {
-                result.sampleEnd();
-                result.setSuccessful(true);
-                result.setSamplerData("ServiceId saved into variable " + this.mapParams.get(ServiceIdVariable));
-                JMeterContextService.getContext().getVariables().put(this.mapParams.get(ServiceIdVariable), response.getBody().getMockService().getId());
-            }else{
-                result.sampleEnd();
-                throw new Exception("Failed to create service " + response.getStatusCodeValue() + "\n " + new ObjectMapper().writeValueAsString(response.getBody()));
-            }
+            result.sampleEnd();
+            result.setSuccessful(true);
         } catch (Throwable e) {
+            result.sampleEnd();
             result.setSuccessful(false);
 
             e.printStackTrace();

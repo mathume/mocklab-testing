@@ -29,6 +29,10 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
 }
 
+bootRepackage {
+    enabled = false
+}
+
 task copyPlugin(type: Copy) {
     from("build/libs")
     into("build/jmeter/lib/ext")
