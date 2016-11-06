@@ -48,6 +48,7 @@ public class DeleteWireMockInstanceTest {
         this.instance.setupTest(context);
         this.jmeterContext.setVariables(new JMeterTestVariables());
         JMeterContextService.replaceContext(this.jmeterContext);
+        this.jmeterContext.getVariables().put("serviceId", "someServiceId");
     }
 
     @Test
@@ -58,13 +59,13 @@ public class DeleteWireMockInstanceTest {
 
     @Test
     public void runTest_hasSubresult() throws Exception {
+        stubResponseOk();
         result = this.instance.runTest(this.context);
         assertTrue(result.getSubResults().length > 0);
     }
 
     @Test
     public void runTest_successfully() throws Exception {
-        this.jmeterContext.getVariables().put("serviceId", "someServiceId");
         stubResponseOk();
         result = this.instance.runTest(this.context);
         assertTrue(result.isSuccessful());
@@ -73,7 +74,6 @@ public class DeleteWireMockInstanceTest {
 
     @Test
     public void runTest_successfully_allSamplersAreSuccessful() throws Exception {
-        this.jmeterContext.getVariables().put("serviceId", "someServiceId");
         stubResponseOk();
         result = this.instance.runTest(this.context);
         assertTrue(result.isSuccessful());
