@@ -10,10 +10,7 @@ import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.threads.JMeterContextService;
 import org.apache.jmeter.threads.JMeterTestContext;
 import org.apache.jmeter.threads.JMeterTestVariables;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
@@ -58,6 +55,7 @@ public class DeleteWireMockInstanceTest {
     }
 
     @Test
+    @Ignore
     public void runTest_hasSubresult() throws Exception {
         stubResponseOk();
         result = this.instance.runTest(this.context);
