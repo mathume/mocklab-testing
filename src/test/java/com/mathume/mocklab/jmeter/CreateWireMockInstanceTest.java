@@ -10,10 +10,7 @@ import org.apache.jmeter.samplers.SampleResult;
 import org.apache.jmeter.threads.JMeterContextService;
 import org.apache.jmeter.threads.JMeterTestContext;
 import org.apache.jmeter.threads.JMeterTestVariables;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
-import org.junit.Test;
+import org.junit.*;
 import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
@@ -41,6 +38,7 @@ public class CreateWireMockInstanceTest {
 
     @Before
     public void beforeTest(){
+        wireMockRule.start();
         this.someMockService.setDomains(new String[0]);
         this.someMockService.setName("");
         this.someMockService.setLinks(new HashMap<>());
@@ -101,5 +99,10 @@ public class CreateWireMockInstanceTest {
     @After
     public void logSampleResult(){
         LoggerFactory.getLogger(CreateWireMockInstanceTest.class).info(result.getResponseDataAsString());
+    }
+
+    @AfterClass
+    public void shutdownMock(){
+        wireMockRule.stop();
     }
 }

@@ -36,6 +36,7 @@ public class DeleteWireMockInstanceTest {
 
     @Before
     public void beforeTest(){
+        wireMockRule.start();
         this.context = new TestContext();
         this.instance = new DeleteWireMockInstance();
         this.context.setParameter(CreateWireMockInstance.ApiKey, "someKey");
@@ -55,7 +56,6 @@ public class DeleteWireMockInstanceTest {
     }
 
     @Test
-    @Ignore
     public void runTest_hasSubresult() throws Exception {
         stubResponseOk();
         result = this.instance.runTest(this.context);
@@ -89,7 +89,7 @@ public class DeleteWireMockInstanceTest {
 
     @After
     public void logSampleResult(){
-        wireMockRule.resetAll();
+        wireMockRule.stop();
         LoggerFactory.getLogger(DeleteWireMockInstanceTest.class).info(result.getResponseDataAsString());
     }
 }
