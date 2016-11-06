@@ -91,6 +91,7 @@ public class DeleteWireMockInstanceTest {
 
     @After
     public void logSampleResult(){
+        wireMockRule.resetAll();
         LoggerFactory.getLogger(DeleteWireMockInstanceTest.class).info(result.getResponseDataAsString());
     }
 }
