@@ -38,7 +38,6 @@ public class CreateWireMockInstanceTest {
 
     @Before
     public void beforeTest(){
-        wireMockRule.start();
         this.someMockService.setDomains(new String[0]);
         this.someMockService.setName("");
         this.someMockService.setLinks(new HashMap<>());
@@ -99,10 +98,5 @@ public class CreateWireMockInstanceTest {
     @After
     public void logSampleResult(){
         LoggerFactory.getLogger(CreateWireMockInstanceTest.class).info(result.getResponseDataAsString());
-    }
-
-    @AfterClass
-    public void shutdownMock(){
-        wireMockRule.stop();
     }
 }

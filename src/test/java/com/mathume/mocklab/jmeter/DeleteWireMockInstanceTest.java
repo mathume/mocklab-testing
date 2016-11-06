@@ -22,13 +22,13 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by sebastian on 3/11/16.
  */
+@Ignore
 public class DeleteWireMockInstanceTest {
 
     DeleteWireMockInstance instance;
     TestContext context;
     JMeterTestContext jmeterContext = new JMeterTestContext();
     SampleResult result;
-    ObjectMapper mapper = new ObjectMapper();
     static final String route = "/services";
 
     @Rule
@@ -36,7 +36,6 @@ public class DeleteWireMockInstanceTest {
 
     @Before
     public void beforeTest(){
-        wireMockRule.start();
         this.context = new TestContext();
         this.instance = new DeleteWireMockInstance();
         this.context.setParameter(CreateWireMockInstance.ApiKey, "someKey");
@@ -89,7 +88,6 @@ public class DeleteWireMockInstanceTest {
 
     @After
     public void logSampleResult(){
-        wireMockRule.stop();
         LoggerFactory.getLogger(DeleteWireMockInstanceTest.class).info(result.getResponseDataAsString());
     }
 }
