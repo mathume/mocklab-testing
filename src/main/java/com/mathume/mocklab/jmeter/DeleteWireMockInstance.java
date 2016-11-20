@@ -62,7 +62,7 @@ public class DeleteWireMockInstance extends AbstractJavaSamplerClient {
         } catch (Throwable e) {
             result.sampleEnd();
             result.setSuccessful(false);
-
+            this.getLogger().error(e.getMessage());
             e.printStackTrace();
             System.out.println("\n\n\n");
         }

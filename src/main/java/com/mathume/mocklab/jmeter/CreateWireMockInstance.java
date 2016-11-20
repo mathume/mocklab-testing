@@ -49,7 +49,7 @@ public class CreateWireMockInstance extends AbstractJavaSamplerClient {
 
             ResponseEntity<MockServiceResponse> response = client.createService(UUID.randomUUID().toString());
 
-            if(response.getStatusCode() == HttpStatus.CREATED) {
+            if(response != null && response.getStatusCode() == HttpStatus.CREATED) {
                 result.sampleEnd();
                 result.setSuccessful(true);
                 SampleResult[] subresults = result.getSubResults();
@@ -65,11 +65,11 @@ public class CreateWireMockInstance extends AbstractJavaSamplerClient {
                 this.getLogger().info("Saved service id " + id + " to variable " + this.mapParams.get(ServiceIdVariable));
             }else{
                 result.sampleEnd();
-                throw new Exception("Failed to create service " + response.getStatusCodeValue() + "\n " + new ObjectMapper().writeValueAsString(response.getBody()));
+                throw new Exception("Failed to create service");
             }
         } catch (Throwable e) {
             result.setSuccessful(false);
-
+            this.getLogger().error(e.getMessage());
             e.printStackTrace();
             System.out.println("\n\n\n");
         }

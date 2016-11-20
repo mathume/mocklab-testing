@@ -26,8 +26,9 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter")
     compile("org.springframework:spring-web")
     compile("com.fasterxml.jackson.core:jackson-databind")
+    compile "com.github.tomakehurst:wiremock:2.2.2"
     testCompile("org.springframework.boot:spring-boot-starter-test")
-    testCompile "com.github.tomakehurst:wiremock:2.2.2"
+//    testCompile "com.github.tomakehurst:wiremock:2.2.2"
 }
 
 bootRepackage {
@@ -46,10 +47,16 @@ task copyDependencies(type: Copy) {
     into("build/jmeter/lib")
 }
 
+task copyResources(type: Copy) {
+    from("src/test/jmeter/data")
+    into("build/jmeter/data")
+}
+
 task copyAll {
     dependsOn build
     dependsOn "copyPlugin"
     dependsOn "copyDependencies"
+    dependsOn "copyResources"
 }
 
 jmInit.dependsOn(copyAll)

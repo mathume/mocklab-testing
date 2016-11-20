@@ -38,11 +38,21 @@
 </node>
 <node CREATED="1478117243307" ID="ID_1545148969" MODIFIED="1478117245200" POSITION="left" TEXT="Use Cases">
 <node CREATED="1479663357831" ID="ID_86629281" MODIFIED="1479663360481" TEXT="use case 1">
-<node CREATED="1479663421816" ID="ID_157627394" MODIFIED="1479663423864" TEXT="SETUP: - a low number of generic stubs (e.g. login, user details), including thinking time - a high number of specific stubs (e.g. transactions with ids), little delay (in real world determined by OS and DB) or none SCENARIOS: a.) simple scenario per user: login to webpage, some requests, leaving the application b.) complex scenario by server: async&apos;ly process high number of transaction requests (betting results)"/>
+<node CREATED="1479663421816" ID="ID_157627394" MODIFIED="1479663455153" TEXT="SETUP:">
+<node CREATED="1479663455154" ID="ID_1453189997" MODIFIED="1479663470389" TEXT=" - a low number of generic stubs (e.g. login, user details), including thinking time "/>
+<node CREATED="1479663470390" ID="ID_537276841" MODIFIED="1479663478333" TEXT="- a high number of specific stubs (e.g. transactions with ids), little delay (in real world determined by OS and DB) or none "/>
+</node>
+<node CREATED="1479663478335" ID="ID_1105815194" MODIFIED="1479663483191" TEXT="SCENARIOS: ">
+<node CREATED="1479663483192" ID="ID_240624258" MODIFIED="1479663487792" TEXT="a.) simple scenario per user: login to webpage, some requests, leaving the application "/>
+<node CREATED="1479663487792" ID="ID_451602687" MODIFIED="1479663487793" TEXT="b.) complex scenario by server: async&apos;ly process high number of transaction requests (betting results)"/>
+</node>
 </node>
 </node>
 <node CREATED="1478137124876" ID="ID_843848121" MODIFIED="1478137162613" POSITION="right" TEXT="Issues">
 <icon BUILTIN="smily_bad"/>
+</node>
+<node CREATED="1479674471486" ID="ID_749837107" MODIFIED="1479674495657" POSITION="left" TEXT="Performance risk analysis based test cases">
+<icon BUILTIN="idea"/>
 </node>
 </node>
 </map>

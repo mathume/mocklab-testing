@@ -12,6 +12,41 @@
       <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
     </TestPlan>
     <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="wireMockProtocol" elementType="Argument">
+            <stringProp name="Argument.name">wireMockProtocol</stringProp>
+            <stringProp name="Argument.value">https</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="serviceId" elementType="Argument">
+            <stringProp name="Argument.name">serviceId</stringProp>
+            <stringProp name="Argument.value">n2m0y</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="wireMockHost" elementType="Argument">
+            <stringProp name="Argument.name">wireMockHost</stringProp>
+            <stringProp name="Argument.value">mocklab.io</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="wireMockPort" elementType="Argument">
+            <stringProp name="Argument.name">wireMockPort</stringProp>
+            <stringProp name="Argument.value">443</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="BigFileSetup" elementType="Argument">
+            <stringProp name="Argument.name">BigFileSetup</stringProp>
+            <stringProp name="Argument.value">false</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="UrlEqualToSetup" elementType="Argument">
+            <stringProp name="Argument.name">UrlEqualToSetup</stringProp>
+            <stringProp name="Argument.value">true</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
       <SetupThreadGroup guiclass="SetupThreadGroupGui" testclass="SetupThreadGroup" testname="Setup service" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
@@ -27,84 +62,51 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </SetupThreadGroup>
       <hashTree>
-        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Create service" enabled="true">
-          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="ApiUser" elementType="Argument">
-                <stringProp name="Argument.name">ApiUser</stringProp>
-                <stringProp name="Argument.value">mathume</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="ApiKey" elementType="Argument">
-                <stringProp name="Argument.name">ApiKey</stringProp>
-                <stringProp name="Argument.value">${apiKey}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="MockLabUrl" elementType="Argument">
-                <stringProp name="Argument.name">MockLabUrl</stringProp>
-                <stringProp name="Argument.value">https://api.mocklab.io/v1/mock-services</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="ServiceIdVariable" elementType="Argument">
-                <stringProp name="Argument.name">ServiceIdVariable</stringProp>
-                <stringProp name="Argument.value">serviceId</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="classname">com.mathume.mocklab.jmeter.CreateWireMockInstance</stringProp>
-        </JavaSampler>
-        <hashTree/>
         <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Setup mappings" enabled="true">
           <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
             <collectionProp name="Arguments.arguments">
-              <elementProp name="connection.url" elementType="Argument">
-                <stringProp name="Argument.name">connection.url</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="WireMockProcotol" elementType="Argument">
+                <stringProp name="Argument.name">WireMockProcotol</stringProp>
+                <stringProp name="Argument.value">${wireMockProtocol}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="binding.url" elementType="Argument">
-                <stringProp name="Argument.name">binding.url</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="ServiceId" elementType="Argument">
+                <stringProp name="Argument.name">ServiceId</stringProp>
+                <stringProp name="Argument.value">${serviceId}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="message" elementType="Argument">
-                <stringProp name="Argument.name">message</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="WireMockHost" elementType="Argument">
+                <stringProp name="Argument.name">WireMockHost</stringProp>
+                <stringProp name="Argument.value">${wireMockHost}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="direction" elementType="Argument">
-                <stringProp name="Argument.name">direction</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="WireMockPort" elementType="Argument">
+                <stringProp name="Argument.name">WireMockPort</stringProp>
+                <stringProp name="Argument.value">${wireMockPort}</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="header.properties" elementType="Argument">
-                <stringProp name="Argument.name">header.properties</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="BigFilePath" elementType="Argument">
+                <stringProp name="Argument.name">BigFilePath</stringProp>
+                <stringProp name="Argument.value">./data/0.1M.random.txt</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="header.property.reference" elementType="Argument">
-                <stringProp name="Argument.name">header.property.reference</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="UrlEqualToSetup" elementType="Argument">
+                <stringProp name="Argument.name">UrlEqualToSetup</stringProp>
+                <stringProp name="Argument.value">true</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
-              <elementProp name="message.selector" elementType="Argument">
-                <stringProp name="Argument.name">message.selector</stringProp>
-                <stringProp name="Argument.value"></stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="receive.timeout" elementType="Argument">
-                <stringProp name="Argument.name">receive.timeout</stringProp>
-                <stringProp name="Argument.value"></stringProp>
+              <elementProp name="BigFileSetup" elementType="Argument">
+                <stringProp name="Argument.name">BigFileSetup</stringProp>
+                <stringProp name="Argument.value">false</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
-          <stringProp name="classname">com.atlantbh.jmeter.plugins.jmstools.JmsUtil</stringProp>
+          <stringProp name="classname">com.mathume.mocklab.jmeter.SetupPerformanceTest</stringProp>
         </JavaSampler>
         <hashTree/>
       </hashTree>
-      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Send requests" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Big file" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -119,28 +121,40 @@
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
-        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="HTTP Request" enabled="true">
-          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-            <collectionProp name="Arguments.arguments"/>
-          </elementProp>
-          <stringProp name="HTTPSampler.domain">www.google.es</stringProp>
-          <stringProp name="HTTPSampler.port"></stringProp>
-          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
-          <stringProp name="HTTPSampler.response_timeout"></stringProp>
-          <stringProp name="HTTPSampler.protocol">http</stringProp>
-          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
-          <stringProp name="HTTPSampler.path"></stringProp>
-          <stringProp name="HTTPSampler.method">GET</stringProp>
-          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
-          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
-          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
-          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
-          <boolProp name="HTTPSampler.monitor">false</boolProp>
-          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
-        </HTTPSamplerProxy>
-        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF" enabled="true">
+          <stringProp name="IfController.condition">${BigFileSetup}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+          <boolProp name="IfController.useExpression">true</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request big file" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${serviceId}.${wireMockHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${wireMockPort}</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">${wireMockProtocol}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/bigfile</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">300</stringProp>
+            <stringProp name="RandomTimer.range">100.0</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
       </hashTree>
-      <PostThreadGroup guiclass="PostThreadGroupGui" testclass="PostThreadGroup" testname="Destroy service" enabled="true">
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="urlEqualTo" enabled="true">
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
@@ -148,57 +162,45 @@
         </elementProp>
         <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
-        <longProp name="ThreadGroup.start_time">1479663883000</longProp>
-        <longProp name="ThreadGroup.end_time">1479663883000</longProp>
+        <longProp name="ThreadGroup.start_time">1479663979000</longProp>
+        <longProp name="ThreadGroup.end_time">1479663979000</longProp>
         <boolProp name="ThreadGroup.scheduler">false</boolProp>
         <stringProp name="ThreadGroup.duration"></stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
-      </PostThreadGroup>
+      </ThreadGroup>
       <hashTree>
-        <JavaSampler guiclass="JavaTestSamplerGui" testclass="JavaSampler" testname="Delete service" enabled="true">
-          <elementProp name="arguments" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" enabled="true">
-            <collectionProp name="Arguments.arguments">
-              <elementProp name="ApiUser" elementType="Argument">
-                <stringProp name="Argument.name">ApiUser</stringProp>
-                <stringProp name="Argument.value">mathume</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="ApiKey" elementType="Argument">
-                <stringProp name="Argument.name">ApiKey</stringProp>
-                <stringProp name="Argument.value">${apiKey}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="MockLabUrl" elementType="Argument">
-                <stringProp name="Argument.name">MockLabUrl</stringProp>
-                <stringProp name="Argument.value">https://api.mocklab.io/v1/mock-services</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-              <elementProp name="ServiceIdVariable" elementType="Argument">
-                <stringProp name="Argument.name">ServiceIdVariable</stringProp>
-                <stringProp name="Argument.value">serviceId</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-              </elementProp>
-            </collectionProp>
-          </elementProp>
-          <stringProp name="classname">com.mathume.mocklab.jmeter.DeleteWireMockInstance</stringProp>
-        </JavaSampler>
-        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="IF" enabled="true">
+          <stringProp name="IfController.condition">${UrlEqualToSetup}</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Request urlEqualTo" enabled="true">
+            <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+              <collectionProp name="Arguments.arguments"/>
+            </elementProp>
+            <stringProp name="HTTPSampler.domain">${serviceId}.${wireMockHost}</stringProp>
+            <stringProp name="HTTPSampler.port">${wireMockPort}</stringProp>
+            <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+            <stringProp name="HTTPSampler.response_timeout"></stringProp>
+            <stringProp name="HTTPSampler.protocol">${wireMockProtocol}</stringProp>
+            <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+            <stringProp name="HTTPSampler.path">/urlEqualTo</stringProp>
+            <stringProp name="HTTPSampler.method">GET</stringProp>
+            <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+            <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+            <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+            <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+            <boolProp name="HTTPSampler.monitor">false</boolProp>
+            <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          </HTTPSamplerProxy>
+          <hashTree/>
+          <GaussianRandomTimer guiclass="GaussianRandomTimerGui" testclass="GaussianRandomTimer" testname="Gaussian Random Timer" enabled="true">
+            <stringProp name="ConstantTimer.delay">300</stringProp>
+            <stringProp name="RandomTimer.range">100.0</stringProp>
+          </GaussianRandomTimer>
+          <hashTree/>
+        </hashTree>
       </hashTree>
-      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
-        <collectionProp name="Arguments.arguments">
-          <elementProp name="apiKey" elementType="Argument">
-            <stringProp name="Argument.name">apiKey</stringProp>
-            <stringProp name="Argument.value">3fced80738e8e50bb1d5da3f8b83040f</stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-          <elementProp name="serviceId" elementType="Argument">
-            <stringProp name="Argument.name">serviceId</stringProp>
-            <stringProp name="Argument.value"></stringProp>
-            <stringProp name="Argument.metadata">=</stringProp>
-          </elementProp>
-        </collectionProp>
-      </Arguments>
-      <hashTree/>
       <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
         <boolProp name="ResultCollector.error_logging">false</boolProp>
         <objProp>

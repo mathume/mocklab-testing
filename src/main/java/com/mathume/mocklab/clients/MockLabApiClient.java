@@ -13,6 +13,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 
 import java.nio.charset.StandardCharsets;
@@ -64,7 +66,7 @@ public class MockLabApiClient {
                     this.serialize(this.getMockLabUrl()) + "\n" +
                             this.serialize(response.getHeaders()) + "\n" +
                             this.serialize(response.getBody().getMockService()), StandardCharsets.UTF_8.name());
-        } catch (HttpClientErrorException e) {
+        } catch (HttpStatusCodeException e) {
             subresult.setSuccessful(false);
             subresult.setResponseCode(e.getStatusCode().value() + "");
             subresult.setResponseMessage(e.getResponseBodyAsString());
@@ -94,7 +96,7 @@ public class MockLabApiClient {
             subresult.sampleEnd();
             subresult.setSuccessful(true);
             subresult.setResponseCode("200");
-        } catch (HttpClientErrorException e) {
+        } catch (HttpStatusCodeException e) {
             subresult.setResponseCode(e.getStatusCode().value() + "");
             subresult.setResponseMessage(e.getResponseBodyAsString());
             subresult.setResponseHeaders(this.serialize(e.getResponseHeaders()));
