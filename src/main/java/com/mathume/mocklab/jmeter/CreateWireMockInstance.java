@@ -52,8 +52,17 @@ public class CreateWireMockInstance extends AbstractJavaSamplerClient {
             if(response.getStatusCode() == HttpStatus.CREATED) {
                 result.sampleEnd();
                 result.setSuccessful(true);
+                SampleResult[] subresults = result.getSubResults();
+                for(int i=0; i<subresults.length; i++){
+                    if(!subresults[i].isSuccessful()){
+                        result.setSuccessful(false);
+                        break;
+                    }
+                }
                 result.setSamplerData("ServiceId saved into variable " + this.mapParams.get(ServiceIdVariable));
-                JMeterContextService.getContext().getVariables().put(this.mapParams.get(ServiceIdVariable), response.getBody().getMockService().getId());
+                String id = response.getBody().getMockService().getId();
+                JMeterContextService.getContext().getVariables().put(this.mapParams.get(ServiceIdVariable), id);
+                this.getLogger().info("Saved service id " + id + " to variable " + this.mapParams.get(ServiceIdVariable));
             }else{
                 result.sampleEnd();
                 throw new Exception("Failed to create service " + response.getStatusCodeValue() + "\n " + new ObjectMapper().writeValueAsString(response.getBody()));

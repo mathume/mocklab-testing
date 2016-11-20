@@ -65,10 +65,11 @@ public class MockLabApiClient {
                             this.serialize(response.getHeaders()) + "\n" +
                             this.serialize(response.getBody().getMockService()), StandardCharsets.UTF_8.name());
         } catch (HttpClientErrorException e) {
+            subresult.setSuccessful(false);
             subresult.setResponseCode(e.getStatusCode().value() + "");
             subresult.setResponseMessage(e.getResponseBodyAsString());
             subresult.setResponseHeaders(this.serialize(e.getResponseHeaders()));
-            throw e;
+            subresult.sampleEnd();
         } finally {
             this.sampler.addRawSubResult(subresult);
         }
@@ -97,7 +98,8 @@ public class MockLabApiClient {
             subresult.setResponseCode(e.getStatusCode().value() + "");
             subresult.setResponseMessage(e.getResponseBodyAsString());
             subresult.setResponseHeaders(this.serialize(e.getResponseHeaders()));
-            throw e;
+            subresult.sampleEnd();
+            subresult.setSuccessful(false);
         } finally {
             this.sampler.addRawSubResult(subresult);
         }

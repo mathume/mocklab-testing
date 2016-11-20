@@ -39,6 +39,7 @@ public class DeleteWireMockInstanceTest {
 
     @Before
     public void beforeTest(){
+        this.wireMockRule.start();
         this.context = new TestContext();
         this.instance = new DeleteWireMockInstance();
         this.context.setParameter(CreateWireMockInstance.ApiKey, "someKey");
@@ -92,5 +93,6 @@ public class DeleteWireMockInstanceTest {
     @After
     public void logSampleResult(){
         LoggerFactory.getLogger(DeleteWireMockInstanceTest.class).info(result.getResponseDataAsString());
+        this.wireMockRule.stop();
     }
 }

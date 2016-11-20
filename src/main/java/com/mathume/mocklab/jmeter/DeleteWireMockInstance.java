@@ -50,7 +50,15 @@ public class DeleteWireMockInstance extends AbstractJavaSamplerClient {
             client.deleteService(serviceId);
 
             result.sampleEnd();
+
             result.setSuccessful(true);
+            SampleResult[] subresults = result.getSubResults();
+            for(int i=0; i<subresults.length; i++){
+                if(!subresults[i].isSuccessful()){
+                    result.setSuccessful(false);
+                    break;
+                }
+            }
         } catch (Throwable e) {
             result.sampleEnd();
             result.setSuccessful(false);

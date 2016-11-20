@@ -15,9 +15,9 @@
         <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
         <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
           <boolProp name="LoopController.continue_forever">false</boolProp>
-          <stringProp name="LoopController.loops">10</stringProp>
+          <stringProp name="LoopController.loops">1</stringProp>
         </elementProp>
-        <stringProp name="ThreadGroup.num_threads">10</stringProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
         <stringProp name="ThreadGroup.ramp_time">1</stringProp>
         <longProp name="ThreadGroup.start_time">1478128135000</longProp>
         <longProp name="ThreadGroup.end_time">1478128135000</longProp>
@@ -125,7 +125,7 @@
         <collectionProp name="Arguments.arguments">
           <elementProp name="apiKey" elementType="Argument">
             <stringProp name="Argument.name">apiKey</stringProp>
-            <stringProp name="Argument.value">3sfced80738e8e50bb1d5da3f8b83040f</stringProp>
+            <stringProp name="Argument.value">3fced80738e8e50bb1d5da3f8b83040f</stringProp>
             <stringProp name="Argument.metadata">=</stringProp>
           </elementProp>
         </collectionProp>

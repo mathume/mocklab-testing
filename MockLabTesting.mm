@@ -36,7 +36,11 @@
 </node>
 <node CREATED="1478117237041" ID="ID_1578091189" MODIFIED="1478117242545" TEXT="Workflow testing"/>
 </node>
-<node CREATED="1478117243307" ID="ID_1545148969" MODIFIED="1478117245200" POSITION="left" TEXT="Use Cases"/>
+<node CREATED="1478117243307" ID="ID_1545148969" MODIFIED="1478117245200" POSITION="left" TEXT="Use Cases">
+<node CREATED="1479663357831" ID="ID_86629281" MODIFIED="1479663360481" TEXT="use case 1">
+<node CREATED="1479663421816" ID="ID_157627394" MODIFIED="1479663423864" TEXT="SETUP: - a low number of generic stubs (e.g. login, user details), including thinking time - a high number of specific stubs (e.g. transactions with ids), little delay (in real world determined by OS and DB) or none SCENARIOS: a.) simple scenario per user: login to webpage, some requests, leaving the application b.) complex scenario by server: async&apos;ly process high number of transaction requests (betting results)"/>
+</node>
+</node>
 <node CREATED="1478137124876" ID="ID_843848121" MODIFIED="1478137162613" POSITION="right" TEXT="Issues">
 <icon BUILTIN="smily_bad"/>
 </node>
